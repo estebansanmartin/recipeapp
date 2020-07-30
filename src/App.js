@@ -51,7 +51,7 @@ function App() {
           />
         </div>
         <div className="control">
-          <button className="button is-primary is-outlined" type="text" value="search" >Search</button>
+          <button className="button is-primary" type="text" value="search" >Search</button>
         </div>
       </form>
       </div>
