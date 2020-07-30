@@ -67,7 +67,7 @@ function App() {
     </div>
 
     <div style={{backgroundColor:"hsl(171, 100%, 96%)", padding:"20px", fontFamily:"monospace", color:"hsl(171, 100%, 41%)"}}>
-      <p className="has-text-centered">&copy; {new Date().getFullYear()} Sviluppato per <a href="https://estebansanmartin.it">Esteban San Martin</a></p>
+      <p className="has-text-centered">&copy; {new Date().getFullYear()} Sviluppato per <a target="_blank" rel="noopener noreferrer" href="https://estebansanmartin.it">Esteban San Martin</a></p>
     </div>
 
     </div>
