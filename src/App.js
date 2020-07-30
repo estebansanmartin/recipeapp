@@ -4,6 +4,7 @@ import Axios from 'axios';
 import {v4 as uuidv4} from 'uuid';
 import Recipe from './components/Recipe';
 import Logo from './logo.png'
+import Alert from './components/Alert'
 
 import 'react-bulma-components/dist/react-bulma-components.min.css'
 
@@ -11,15 +12,25 @@ function App() {
 
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
+  const [alert, setAlert] = useState("");
 
   const APP_ID = "069bf1cc";
   const APP_KEY = "159cd3e0841d92f2af27e4cf4b7281b4";
   const url =`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`;
 
   const getData = async() => {
-    const result = await Axios.get(url);
-    setRecipes(result.data.hits)
-    console.log(result)
+    if(query !== "") {
+      const result = await Axios.get(url);
+    if(!result.data.more) {
+      return setAlert("No food with such name")
+    }
+    setRecipes(result.data.hits);
+    console.log(result);
+    setQuery("");
+    setAlert("");
+    } else {
+      setAlert('Please fill the form');
+    }
   }
 
   const onChange = e => {
@@ -40,6 +51,7 @@ function App() {
     <div className="has-text-centeredcontainer">
       <img onClick={getData} src={Logo} alt="recipe"/>
       <form className="field mgh-large" onSubmit={onSubmit}>
+        {alert !== "" && <Alert alert={alert} />}
         <div className="control">
           <input 
           className="input" 
